@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog – EatherCrafter</title>
+  <style>
+    :root{--neon:#00d9ff}
+    body{margin:0;background:#0d0d0d;color:#f2f2f2;font-family:'Segoe UI',sans-serif;padding:30px}
+    h1{text-align:center;color:var(--neon);margin-bottom:30px}
+    .cards{display:grid;gap:20px;max-width:700px;margin:auto}
+    .card{background:#1a1a1a;border-radius:10px;padding:15px;border-left:4px solid var(--neon)}
+    .card h3{color:var(--neon);margin-bottom:5px}
+    .back{margin-top:30px;text-align:center}
+    a{color:var(--neon);border:1px solid var(--neon);padding:8px 16px;border-radius:6px;text-decoration:none}
+  </style>
+</head>
+<body>
+  <h1>Dev Notes</h1>
+  <div class="cards">
+    <div class="card">
+      <h3>Optimasi Scroll Reveal</h3>
+      <p>Intersec­tion Observer vs setInterval untuk performa 60 fps.</p>
+    </div>
+    <div class="card">
+      <h3>Akses API tanpa CORS</h3>
+      <p>Menggunakan proxy server sederhana di 10 baris PHP.</p>
+    </div>
+    <div class="card">
+      <h3>Neon Glow dengan CSS</h3>
+      <p>Triks box-shadow stacking untuk glow yang smooth.</p>
+    </div>
+  </div>
+  <div class="back"><a href="index.html">← Back Home</a></div>
+</body>
+</html>

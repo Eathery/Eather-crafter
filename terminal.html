@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Terminal – EatherCrafter</title>
+  <style>
+    :root{--neon:#00d9ff}
+    body{margin:0;background:#0d0d0d;color:#f2f2f2;font-family:Consolas,monospace;padding:20px}
+    #term{width:100%;max-width:700px;margin:auto}
+    #output{white-space:pre-wrap;margin-bottom:10px;height:300px;overflow-y:auto}
+    #input{background:transparent;border:none;color:#f2f2f2;width:calc(100% - 40px);outline:none}
+    .prompt{color:var(--neon)}
+    .back{margin-top:20px;text-align:center}
+    a{color:var(--neon);text-decoration:none}
+  </style>
+</head>
+<body>
+  <div id="term">
+    <div id="output">Welcome to EatherCLI v1.0<br>Type <span style="color:var(--neon)">help</span> for commands.</div>
+    <span class="prompt">eather@dev:~$ </span>
+    <input id="input" autocomplete="off">
+  </div>
+  <div class="back"><a href="index.html">← Back Home</a></div>
+
+  <script>
+    const output=document.getElementById('output'),inp=document.getElementById('input');
+    const commands={
+      help:()=>`Commands: about, skills, projects, contact, clear`,
+      about:()=>`Creative Dev & Tech Hacker from Indonesia.`,
+      skills:()=>`HTML, CSS, JS, Python, Linux, Termux.`,
+      projects:()=>`EatherCrafter, Dark Portfolio, Terminal Dashboard.`,
+      contact:()=>`Email: bimakafa155@gmail.com`,
+      clear:()=>{output.innerHTML='';return''}
+    };
+    inp.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){
+        const cmd=inp.value.trim();
+        let res=commands[cmd]?commands[cmd]():`Command not found: ${cmd}`;
+        output.innerHTML+=`\neather@dev:~$ ${cmd}\n${res}\n`;
+        inp.value=''; output.scrollTop=output.scrollHeight;
+      }
+    });
+  </script>
+</body>
+</html>
