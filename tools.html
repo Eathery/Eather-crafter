@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Tools – EatherCrafter</title>
+  <style>
+    :root{--neon:#00d9ff}
+    body{margin:0;background:#0d0d0d;color:#f2f2f2;font-family:'Segoe UI',sans-serif;padding:30px}
+    h1{text-align:center;color:var(--neon);margin-bottom:30px}
+    .tool{background:#1a1a1a;border-radius:10px;padding:20px;margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto}
+    input,textarea{width:100%;padding:8px;border:1px solid #333;background:#111;color:#f2f2f2;border-radius:4px}
+    button{margin-top:10px;background:transparent;border:1px solid var(--neon);color:var(--neon);padding:8px 16px;border-radius:6px;cursor:pointer}
+    button:hover{background:var(--neon);color:#0d0d0d}
+    .back{margin-top:30px;text-align:center}
+    a{color:var(--neon);border:1px solid var(--neon);padding:8px 16px;border-radius:6px;text-decoration:none}
+  </style>
+</head>
+<body>
+  <h1>Mini Tools</h1>
+
+  <div class="tool">
+    <h3>Base64 Encode/Decode</h3>
+    <textarea id="base64io" rows="3" placeholder="Paste text or base64 here..."></textarea>
+    <button onclick="document.getElementById('base64io').value=btoa(document.getElementById('base64io').value)">Encode</button>
+    <button onclick="document.getElementById('base64io').value=atob(document.getElementById('base64io').value)">Decode</button>
+  </div>
+
+  <div class="tool">
+    <h3>Unix Timestamp ⇄ Date</h3>
+    <input type="datetime-local" id="datePicker">
+    <button onclick="document.getElementById('datePicker').valueAsNumber = Date.now()">Now</button>
+    <p id="ts">Timestamp: <span id="tsv"></span></p>
+    <script>
+      const dp=document.getElementById('datePicker'),tsv=document.getElementById('tsv');
+      dp.addEventListener('change',()=>tsv.textContent=Math.floor(dp.valueAsNumber/1000));
+      tsv.textContent=Math.floor(Date.now()/1000);
+    </script>
+  </div>
+
+  <div ‌‍
