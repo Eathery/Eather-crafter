@@ -1,340 +1,238 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EatherCrafter</title>
-
-  <style>
-    :root { --neon:#00d9ff; }
-
-    /* ---------- RESET & BASE ---------- */
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:'Segoe UI',sans-serif;
-      background:#0d0d0d;
-      color:#f2f2f2;
-      line-height:1.6;
-      font-size:clamp(.9rem,1vw + .3rem,1.1rem);
+        box-sizing: border-box;
     }
 
-    /* ---------- PARTICLE BG ---------- */
-    #particles-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-
-    /* ---------- HEADER ---------- */
-    header{position:relative;text-align:center;padding:clamp(40px,8vh,80px) 20px;z-index:1}
-    header::before{content:"";position:absolute;inset:-30% -50%;background:radial-gradient(circle at center,rgba(0,217,255,.08) 0%,transparent 70%);filter:blur(80px);animation:float 8s ease-in-out infinite}
-    @keyframes float{0%{transform:translateY(0)scale(1)}50%{transform:translateY(-20px)scale(1.05)}100%{transform:translateY(0)scale(1)}}
-
-    .profile-pic{
-      width:clamp(150px,20vw,220px);
-      height:clamp(150px,20vw,220px);
-      border-radius:50%;
-      border:3px solid var(--neon);
-      object-fit:cover;
-      box-shadow:0 0 30px rgba(0,217,255,.35);
-      margin:0 auto 20px;
-      display:block;
-      transition:transform .4s ease;
-    }
-    .profile-pic:hover{transform:scale(1.05) rotate(1deg)}
-
-    /* typewriter */
-    #typewriter{color:var(--neon);font-size:clamp(1.5rem,3vw,2.5rem);margin-bottom:.5rem}
-    #typewriter .cursor{color:var(--neon);animation:blink 1s steps(2) infinite}
-    @keyframes blink{50%{opacity:0}}
-
-    /* neon line */
-    .neon-line{
-      width:100%;
-      height:2px;
-      background:var(--neon);
-      margin:20px auto 0;
-      box-shadow:0 0 10px var(--neon),0 0 20px var(--neon);
-      animation:pulse 3s ease-in-out infinite alternate;
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      overflow: hidden;
     }
 
-    /* ---------- NAV ---------- */
-    nav{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:clamp(12px,2vw,20px);
-      margin:30px 0;
-      position:relative;
-      z-index:1;
-    }
-    nav a{
-      color:var(--neon);
-      text-decoration:none;
-      font-size:clamp(.8rem,1.5vw,1rem);
-      padding:8px 14px;
-      border:1px solid var(--neon);
-      border-radius:6px;
-      transition:all .3s ease;
-    }
-    nav a:hover{
-      background:var(--neon);
-      color:#0d0d0d;
-      box-shadow:0 0 16px var(--neon);
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: -1;
     }
 
-    /* ---------- SECTION ---------- */
-    section{
-      max-width:800px;
-      margin:50px auto;
-      padding:clamp(20px,3vw,30px);
-      background:#1a1a1a;
-      border-radius:12px;
-      position:relative;
-      z-index:1;
-      transition:transform .3s ease, opacity .8s ease;
-      opacity:0;
-      transform:translateY(30px);
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 1rem;
+    
+    .box {
+      background: rgba(20, 20, 20, 0.95);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 128, 0.25);
+      width: 320px;
+      animation: fadeIn 0.6s ease;
     }
-    section.reveal{opacity:1;transform:translateY(0)}
+        .box h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #00ff99;
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
 
-    section h2{color:var(--neon);margin-bottom:12px;font-size:clamp(1.1rem,2.5vw,1.5rem)}
-    section p,li{font-size:clamp(.85rem,1.2vw,1rem)}
+    .input-group {
+      margin-bottom: 1rem;
+    }
 
-    /* ---------- PROGRESS BAR ---------- */
-    .bar{background:#222;height:6px;border-radius:3px;margin:8px 0 12px;position:relative;overflow:hidden}
-    .bar::after{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
-      height:100%;
-      width:0;
-      background:var(--neon);
-      box-shadow:0 0 8px var(--neon);
-      transition:width 1.5s ease;
+    .input-group label {
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      display: block;
     }
-    .bar.active::after{width:var(--w)}
 
-    /* ---------- KONTAK ICON-ONLY ---------- */
-    .kontak-icons{
-      display:flex;
-      justify-content:center;
-      gap:clamp(20px,3vw,40px);
-      flex-wrap:wrap;
-      margin-top:30px;
+    .input-group input {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 8px;
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      font-size: 0.9rem;
     }
-    .kontak-icons a{
-      width:clamp(50px,6vw,70px);
-      height:clamp(50px,6vw,70px);
-      border:2px solid var(--neon);
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:all .4s ease;
-      background:transparent;
-    }
-    .kontak-icons a:hover{
-      background:var(--neon);
-      transform:scale(1.15);
-      box-shadow:0 0 25px var(--neon);
-    }
-    .kontak-icons img{width:clamp(24px,3vw,32px);height:auto;filter:invert(1)}
 
-    /* ---------- FOOTER ---------- */
-    footer{text-align:center;font-size:clamp(.75rem,1.2vw,1rem);color:#555;margin:40px 0}
-    footer span{color:var(--neon)}
-
-    /* ---------- TERMINAL CLI ---------- */
-    #terminal{
-      max-width:800px;
-      margin:50px auto;
-      background:#111;
-      border:1px solid var(--neon);
-      border-radius:10px;
-      padding:20px;
-      font-family:'Consolas',monospace;
-      font-size:clamp(.85rem,1.2vw,1rem);
-      box-shadow:0 0 10px var(--neon);
-      position:relative;
-      z-index:1;
-      transition:opacity .8s ease;
-      opacity:0;
-      transform:translateY(30px);
+    .input-group input:focus {
+      outline: none;
+      box-shadow: 0 0 4px #00ff99;
     }
-    #terminal.reveal{opacity:1;transform:translateY(0)}
-    #terminal pre{white-space:pre-wrap;color:#f2f2f2;margin:0 0 10px}
-    #terminal-input{
-      width:100%;
-      background:transparent;
-      border:none;
-      outline:none;
-      color:var(--neon);
-      font-family:inherit;
-      font-size:inherit;
-    }
-    .prompt{color:var(--neon)}
 
-    /* ---------- RESPONSIVE ---------- */
-    @media(max-width:600px){
-      .kontak-icons{gap:15px}
+    .btn {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: none;
+      background: #00ff99;
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #00cc7a;
+    }
+
+    .links {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .links a {
+      color: #00ff99;
+      cursor: pointer;
+      text-decoration: none;
+      margin: 0 0.4rem;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .error {
+      color: #ff5c5c;
+      font-size: 0.8rem;
+      margin-top: -0.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-
 <body>
-  <!-- Particle Background -->
-  <canvas id="particles-canvas"></canvas>
-
-  <!-- HEADER -->
-  <header>
-    <img src="https://cdn.discordapp.com/attachments/1389698129405935698/1398920017684467722/file_00000000685461fd89f5fe89450a3200.png?ex=68871d4a&is=6885cbca&hm=04856ea7a99c5b7b0657d6bb891c5ec1908cdddbc44be004d12ec2c7f0c80615&" alt="Foto Profil" class="profile-pic">
-    <div id="typewriter"></div>
-    <p>Creative Dev • Web Coder • Tech Hacker</p>
-    <div class="neon-line"></div>
-  </header>
-
-  <!-- NAV -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="lab.html">Lab</a>
-    <a href="blog.html">Blog</a>
-    <a href="tools.html">Tools</a>
-    <a href="contact.html">Contact</a>
-    <a href="terminal.html">Terminal</a>
-  </nav>
-
-  <!-- SECTIONS -->
-  <section id="tentang" class="reveal">
-    <h2>Tentang Saya</h2>
-    <ul>
-      <li><strong>Fokus Utama:</strong> Pengembangan web & automasi sistem.</li>
-      <li><strong>Pengalaman:</strong> Sejak 2023 membangun aplikasi HTML/CSS/JS & Linux/Termux.</li>
-      <li><strong>Prinsip:</strong> Kode bersih, desain efisien, performa optimal.</li>
-    </ul>
-  </section>
-
-  <section id="keahlian" class="reveal">
-    <h2>Skill</h2>
-    <ul>
-      <li>Frontend: HTML5, CSS3, JavaScript, Responsive Design</li>
-      <li>Styling: Dark mode minimalis</li>
-      <li>Backend/Tools: Basic PHP, Git, Linux CLI, Termux</li>
-      <li>DevOps: tmux, monitoring shell</li>
-    </ul>
-    <div class="bar" data-width="90%"></div>
-    <div class="bar" data-width="85%"></div>
-    <div class="bar" data-width="80%"></div>
-    <div class="bar" data-width="75%"></div>
-    <div class="bar" data-width="95%"></div>
-  </section>
-
-  <section id="projek" class="reveal">
-    <h2>Project Saya</h2>
-    <ul>
-      <li>EatherCrafter – Personal branding minimalis tanpa framework.</li>
-      <li>Minimal Dark Portfolio – Responsive & animasi smooth.</li>
-      <li>Terminal Dashboard – Realtime monitoring Termux/Tmux.</li>
-      <li>AutoBot WhatsApp – Python auto-reply & notifikasi.</li>
-      <li>Web Uptime Monitor – Status server ringan.</li>
-    </ul>
-  </section>
-
-  <!-- TERMINAL CLI -->
-  <div id="terminal" class="reveal">
-    <pre id="terminal-output">Welcome to EatherCLI v2.0
-Type <span class="prompt">help</span> for commands.</pre>
-    <span class="prompt">eather@dev:~$ </span>
-    <input id="terminal-input" autocomplete="off">
+  <canvas id="particles"></canvas>
+  <div class="container">
+    <div class="box">
+      <h2 id="form-title">Masuk Akun</h2>
+      <div class="input-group">
+        <label for="email">Email / Nomor</label>
+        <input type="text" id="email" placeholder="Masukkan email atau nomor">
+        <div class="error" id="email-error"></div>
+      </div>
+      <div class="input-group" id="pw-group">
+        <label for="password">Kata Sandi</label>
+        <input type="password" id="password" placeholder="Masukkan kata sandi">
+        <div class="error" id="pw-error"></div>
+      </div>
+      <button class="btn" id="submit-btn" onclick="handleLogin()">Login</button>
+      <div class="links">
+        <a onclick="switchForm('reset')">Lupa Password?</a> |
+        <a onclick="switchForm('register')">Daftar</a>
+      </div>
+    </div>
   </div>
 
-  <!-- KONTAK ICON-ONLY -->
-  <section id="kontak" class="reveal">
-    <h2>Kontak</h2>
-    <div class="kontak-icons">
-      <a href="https://wa.me/6282313230907" aria-label="WhatsApp">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WA">
-      </a>
-      <a href="mailto:bimakafa155@gmail.com" aria-label="Email">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/email.png" alt="Email">
-      </a>
-      <a href="https://github.com/Eathery" aria-label="GitHub">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/github.png" alt="GitHub">
-      </a>
-      <a href="https://t.me/EatherCrafter" aria-label="Telegram">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="TG">
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    <span id="quote">Loading quote...</span>
-  </footer>
-
-  <!-- SCRIPTS -->
   <script>
-    /* PARTICLE */
-    const canvas=document.getElementById('particles-canvas'),ctx=canvas.getContext('2d');
-    let W=canvas.width=innerWidth,H=canvas.height=innerHeight;
-    const particles=[],max=60;
-    for(let i=0;i<max;i++) particles.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3,d:Math.random()*max});
-    function draw(){
-      ctx.clearRect(0,0,W,H);
-      ctx.fillStyle='#00d9ff';
-      ctx.globalAlpha=.3;
-      particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();});
-      update();
-    }
-    function update(){
-      particles.forEach(p=>{
-        p.y+=Math.cos(p.d)*.3;
-        p.x+=Math.sin(p.d)*.3;
-        if(p.x>W+5||p.x<-5||p.y>H+5||p.y<-5){p.x=Math.random()*W;p.y=-10;}
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = Array.from({length: 60}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 2 + 1,
+      dx: (Math.random() - 0.5) * 0.5,
+      dy: (Math.random() - 0.5) * 0.5,
+    }));
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(0, 255, 128, 0.5)";
+      particles.forEach(p => {
+        p.x += p.dx; p.y += p.dy;
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
       });
+      requestAnimationFrame(draw);
     }
-    (function animate(){requestAnimationFrame(animate);draw();})();
-    window.addEventListener('resize',()=>{W=canvas.width=innerWidth;H=canvas.height=innerHeight;});
+    draw();
 
-    /* TYPEWRITER */
-    const txt="EatherCrafter";let i=0;
-    function type(){
-      document.getElementById('typewriter').innerHTML=txt.slice(0,i)+'<span class="cursor">|</span>';
-      if(i++<txt.length) setTimeout(type,120);
-    }
-    type();
-
-    /* FOOTER QUOTES */
-    const quotes=["Code is poetry.","Stay hungry, stay foolish.","Simplicity is the ultimate sophistication.","Keep learning, keep building."];
-    let qi=0;setInterval(()=>{document.getElementById('quote').textContent=quotes[qi++%quotes.length];},8000);
-
-    /* SCROLL REVEAL & PROGRESS BAR */
-    const reveals=document.querySelectorAll('.reveal, .bar');
-    const io=new IntersectionObserver(entries=>{
-      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');}});
-    },{threshold:.2});
-    reveals.forEach(el=>io.observe(el));
-
-    /* TERMINAL CLI */
-    const output=document.getElementById('terminal-output');
-    const input=document.getElementById('terminal-input');
-    const commands={
-      help:()=>`Commands: about, skills, projects, contact, clear`,
-      about:()=>`Creative Dev & Tech Hacker from Indonesia.`,
-      skills:()=>`HTML, CSS, JS, Python, Linux, Termux.`,
-      projects:()=>`EatherCrafter, Dark Portfolio, Terminal Dashboard.`,
-      contact:()=>`Email: bimakafa155@gmail.com`,
-      clear:()=>{output.innerHTML='';return''}
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      appId: "YOUR_APP_ID"
     };
-    input.addEventListener('keydown',e=>{
-      if(e.key==='Enter'){
-        const cmd=input.value.trim();
-        let res=commands[cmd]?commands[cmd]():`Command not found: ${cmd}`;
-        output.innerHTML+=`\neather@dev:~$ ${cmd}\n${res}\n`;
-        input.value='';
-        output.scrollTop=output.scrollHeight;
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function switchForm(mode) {
+      const title = document.getElementById('form-title');
+      const btn = document.getElementById('submit-btn');
+      const pwGroup = document.getElementById('pw-group');
+      clearErrors();
+
+      if (mode === 'register') {
+        title.innerText = 'Daftar Akun';
+        btn.innerText = 'Daftar';
+        btn.onclick = handleRegister;
+        pwGroup.style.display = '';
+      } else if (mode === 'reset') {
+        title.innerText = 'Reset Password';
+        btn.innerText = 'Kirim Email';
+        btn.onclick = handleReset;
+        pwGroup.style.display = 'none';
+      } else {
+        title.innerText = 'Masuk Akun';
+        btn.innerText = 'Login';
+        btn.onclick = handleLogin;
+        pwGroup.style.display = '';
       }
-    });
-    input.focus();
+    }
+
+    function clearErrors() {
+      document.getElementById('email-error').innerText = '';
+      document.getElementById('pw-error').innerText = '';
+    }
+
+    function showError(err) {
+      if (err.message.includes('email')) {
+        document.getElementById('email-error').innerText = err.message;
+      } else if (err.message.includes('password')) {
+        document.getElementById('pw-error').innerText = err.message;
+      } else {
+        alert(err.message);
+      }
+    }
+
+    function handleLogin() {
+      const email = document.getElementById('email').value;
+      const pw = document.getElementById('password').value;
+      clearErrors();
+      auth.signInWithEmailAndPassword(email, pw)
+        .then(() => alert("Berhasil login!"))
+        .catch(showError);
+    }
+
+    function handleRegister() {
+      const email = document.getElementById('email').value;
+      const pw = document.getElementById('password').value;
+      clearErrors();
+      auth.createUserWithEmailAndPassword(email, pw)
+        .then(() => alert("Pendaftaran berhasil!"))
+        .catch(showError);
+    }
+
+    function handleReset() {
+      const email = document.getElementById('email').value;
+      clearErrors();
+      auth.sendPasswordResetEmail(email)
+        .then(() => alert("Email reset dikirim!"))
+        .catch(showError);
+    }
   </script>
 </body>
 </html>
-
