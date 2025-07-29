@@ -1,7 +1,7 @@
 # LoopBlaze Projects
 
 Welcome to the official repository by **LoopBlaze** 🚀  
-We're focused on building clean, scalable, and modern tech — from web apps, mobile utilities, to open-source tools.
+We're focused on building clean, scalable, and modern tech from web apps, mobile utilities, to open-source tools.
 
 ## About
 
@@ -21,7 +21,7 @@ This project is part of the LoopBlaze initiative, aimed at:
 ## License
 
 Feel free to explore, learn, and build upon.  
-This project is under the **MIT License** — use it, fork it, improve it.
+This project is under the **MIT License** use it, fork it, improve it.
 
 ---
 
