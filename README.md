@@ -1,26 +1,68 @@
-<!-- ZeroTrace README Template -->
+<!-- README START -->
 
-<h1 align="center">🚀 Project Title</h1>
+<div align="center">
+
+<h1>ZeroTrace Projects 🚀</h1>
+
+<img src="https://readme-typing-svg.herokuapp.com/?lines=Full-stack+Builder;Security+Enthusiast;DevOps+Explorer;Always+Learning&center=true&width=500&height=45">
+
+<p>
+  <img src="https://komarev.com/ghpvc/?username=ZeroTrace&label=Profile+Views&color=0e75b6&style=flat" alt="ZeroTrace" />
+  <img src="https://img.shields.io/github/followers/ZeroTrace?label=Follow&style=social" />
+</p>
+
+📡 **Automated • Modular • Scale-Ready**  
+💻 Built with 💙 by ZeroTrace  
+</div>
+
+---
+
+## 📁 Project Overview
+
+> Describe this project in 1-2 sentence(s).  
+> Use this section to briefly tell what it does or why it matters.  
+> *(You can automate this using GitHub templates too.)*
+
+---
+
+## 🛠️ Features
+
+- [x] Modular folder structure
+- [x] Optimized for scalability
+- [x] Simple to deploy anywhere
+- [x] Hacker aesthetic UI/UX
+
+---
+
+## 📊 Stats & Signal
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=00FF9F&center=true&vCenter=true&width=435&lines=ZeroTrace+Was+Here...;Open+Source+Builder;Hacking+The+Matrix+%F0%9F%92%BB" alt="Typing SVG" />
+  <img src="https://github-readme-stats.vercel.app/api?username=ZeroTrace&show_icons=true&theme=tokyonight&hide_border=true" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=ZeroTrace&theme=tokyonight&hide_border=true" />
 </p>
 
 ---
 
-## 🔍 Overview
+## 🧠 Tech Stack
 
-> ⚙️ *Short one-liner tentang project kamu.*
->  
-Contoh:  
-Tool open-source untuk scanning jaringan lokal dengan tampilan terminal.
+| Layer        | Tools                        |
+| ------------ | ---------------------------- |
+| Frontend     | Next.js / React / Tailwind   |
+| Backend      | Node.js / Express / Python   |
+| DevOps       | Docker / GitHub Actions      |
+| Cloud & DB   | Firebase / Supabase / MongoDB|
 
 ---
 
-## 💻 Tech Stack
+## 📁 Folder Structure
 
 ```bash
-- ⚙️ Language     : Python / JS / Go / etc.
-- 📁 Framework    : Express / React / Flask / etc.
-- 🛠 Tools        : GitHub, Vercel, Docker, Postman
-- ☁️ Deployment  : GitHub Pages / Vercel / Railway / Render
+.
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── utils/
+│   └── styles/
+├── .env.example
+└── README.md
